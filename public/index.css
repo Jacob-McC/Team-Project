@@ -1,0 +1,23 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 5fr 1fr;
+  background-color: #2196f3;
+  width: 100vw;
+  gap: 10px;
+  height: 100vh;
+}
+
+.gridContainer > div {
+  background-color: rgba(22, 92, 25, 0.082);
+  text-align: center;
+  font-size: 30px;
+}
