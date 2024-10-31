@@ -21,3 +21,10 @@ body {
   text-align: center;
   font-size: 30px;
 }
+.gridContainer > div > div {
+  background-color: rgba(109, 92, 25, 0.082);
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  font-size: 30px;
+}
