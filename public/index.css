@@ -21,10 +21,17 @@ body {
   text-align: center;
   font-size: 30px;
 }
-.gridContainer > div > div {
+.upgradeDiv {
   background-color: rgba(109, 92, 25, 0.082);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: auto;
   gap: 10px;
   text-align: center;
   font-size: 30px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
