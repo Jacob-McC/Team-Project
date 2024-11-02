@@ -9,7 +9,7 @@ window.addEventListener("load", function(){
 
     clickerButton.addEventListener("click", function(){
         clicked++
-        currencyText.textContent = "Clicks: " + clicked;
+        currencyText.textContent = "$ " + clicked;
         console.log("The button has been clicked!!! We are now at: " + clicked + " Clicks!");
     })
 })

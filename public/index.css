@@ -31,7 +31,32 @@ body {
   font-size: 30px;
 }
 .center {
-  display: flex;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 40% 60%;
   justify-content: center;
   align-items: center;
+  
+}
+
+.button > button{
+  display: inline-block;
+  justify-content: center;
+  padding: 20%;
+  font-size: 60px;
+  background-color: blueviolet;
+  border-radius: 50%;
+  border: none;
+  transition-duration: 0.3s;
+  box-shadow: 0px 0px 5px 5px;
+  
+}
+
+.button > button:hover {
+  background-color: #7a1bd2;
+}
+.button > button:active{
+  transition-duration: 0ms;
+  box-shadow: inset 3px 3px 15px #000;
+  transform: translateY(4px);
 }
