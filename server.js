@@ -8,6 +8,9 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/public/login.html");
 });
+app.get("/register", (req, res) => {
+  res.sendFile(__dirname + "/public/register.html");
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
