@@ -39,6 +39,10 @@ body {
   
 }
 
+button{
+  cursor: pointer;
+}
+
 .button > button{
   display: inline-block;
   justify-content: center;
