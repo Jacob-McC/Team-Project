@@ -60,3 +60,14 @@ body {
   box-shadow: inset 3px 3px 15px #000;
   transform: translateY(4px);
 }
+
+.upgradeButton{
+  background-color: #7a1bd2;
+  border: none;
+  display: block;
+  justify-content: center;
+  text-decoration: none;
+  
+  width: 100%;
+  height: 100%;
+}
