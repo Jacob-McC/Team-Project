@@ -6,27 +6,48 @@ window.addEventListener("load", function(){
     var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
     var upgradeName = this.document.getElementsByClassName("upgradeName"); //The name of each upgrade
     var currencyText = this.document.getElementsByName("currency")[0]; //The text for the user's currency
-    var upgradeOwned = [...Array(upgradeButton.length).fill(0)];
-    var clicked = 0; //Mainly a debug var but is used for displaying the user's money
+    var currency = currencyText.textContent.substring(1);
+    var upgradeOwned = [...Array(upgradeButton.length).fill(0)]; //The amount of each upgrade the user owns
     var clickScale = 1; //For if any of the upgrades increase money per click
     console.log("Page Loaded Successfully");
     console.log(upgradeOwned);
 
 
     clickerButton.addEventListener("click", function(){ //When clicker is clicked it will put money up
-        clicked++;
-        currencyText.textContent = "$ " + clicked;
-        console.log("The button has been clicked!!! We are now at: " + clicked + " Clicks!");
+        currency++;
+        console.log("Currency: " + currency);
+        currencyText.textContent = "$ " + currency;
+        console.log("The button has been clicked!!! We are now at: " + currency + " Clicks!");
     })
 
     for(let i=0; i < upgradeButton.length; i++){
         upgradeButton[i].addEventListener("click", function(){
             console.log("This upgrade costs: " + upgradeCost[i].textContent) 
-            upgradeOwned[i]++;
-            upgradeName[i].textContent = "Upgrade " + (i+1) + " (" + upgradeOwned[i] + ")";
-            
-            
-            console.log("Upgrade "+ i + " purchased!");
+            if (parseInt(currency) >= upgradeCost[i].textContent){
+                currency = currency - upgradeCost[i].textContent;
+                changeCurrency(currency);
+                upgradeOwned[i]++;
+                upgradeName[i].textContent = "Upgrade " + (i+1) + " (" + upgradeOwned[i] + ")";
+                console.log("Upgrade Bought!");
+            }
+            else{
+                console.log("Upgrade not bought.");
+            }
+
+            console.log("The user now owns " + upgradeOwned[i] + " of " + upgradeName[i].textContent);
     })}
+
+
+    function changeCurrency(currency){
+        if(currency >= 0){
+        currencyText.textContent = currencyText.textContent = "$ " + currency;
+        }
+        else{
+            console.log("Can't put currency below 0");
+            return;
+        }
+    }
 })
+
+
 
