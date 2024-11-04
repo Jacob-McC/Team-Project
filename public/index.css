@@ -71,6 +71,7 @@ button{
   display: block;
   justify-content: center;
   text-decoration: none;
+  font-size: 15px;
   
   width: 100%;
   height: 100%;
