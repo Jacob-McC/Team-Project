@@ -24,6 +24,7 @@ db.serialize(() => {
   db.run(
     `INSERT INTO users (name,password,money) VALUES ('testName2', 'testpass2', '509')`
   );
+  console.log("Database has been reset, i hope this was intentional...");
 });
 
 //very unsecure, i know
