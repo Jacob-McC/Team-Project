@@ -28,17 +28,34 @@ const db = new sqlite3.Database("./database.db");
 
 app.post("/register", (req, res) => {
   const { username, password } = req.body;
-
   // Insert form data into the SQLite database
   // The '?' are temp values that are then filled based on the parameters passed in
   const sql = `INSERT INTO users (name, password, money) VALUES (?, ?, 0)`;
   db.run(sql, [username, password], function (err) {
     if (err) {
       return res.status(500).send("Database error");
+      //500 is an internal server error
     }
     res.redirect("/AccountCreation");
   });
 });
 
-//Need to create another for login
-//Shouldn't be that hard, clueless
+//Future error to fix, check if the username is unique to avoid a very unlikely error from my shit code
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  // Insert form data into the SQLite database
+  // The '?' are temp values that are then filled based on the parameters passed in
+  const sql = `SELECT * FROM users WHERE name = ? AND password = ?`;
+  db.get(sql, [username, password], (err, row) => {
+    if (err) {
+      return res.status(500).send("Database error");
+    }
+    if (row) {
+      res.redirect("/");
+    } else {
+      res.redirect("/login");
+    }
+  });
+});
