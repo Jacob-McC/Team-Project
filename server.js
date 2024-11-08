@@ -56,6 +56,7 @@ app.post("/login", (req, res) => {
       res.redirect("/");
     } else {
       res.redirect("/login");
+      //Need to give the user a message or something
     }
   });
 });

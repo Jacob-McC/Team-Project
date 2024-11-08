@@ -17,6 +17,9 @@ html {
 .register {
   text-align: center;
 }
+a {
+  color: #04aa6d;
+}
 a:link {
   text-decoration: none;
   font-size: 40px;

@@ -9,7 +9,7 @@ body {
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 5fr 1fr;
+  grid-template-rows: 9fr 1fr;
   background-color: #2196f3;
   width: 100vw;
   gap: 10px;
@@ -36,14 +36,13 @@ body {
   grid-template-rows: 40% 60%;
   justify-content: center;
   align-items: center;
-  
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-.button > button{
+.button > button {
   display: inline-block;
   justify-content: center;
   padding: 20%;
@@ -53,26 +52,25 @@ button{
   border: none;
   transition-duration: 0.3s;
   box-shadow: 0px 0px 5px 5px;
-  
 }
 
 .button > button:hover {
   background-color: #7a1bd2;
 }
-.button > button:active{
+.button > button:active {
   transition-duration: 0ms;
   box-shadow: inset 3px 3px 15px #000;
   transform: translateY(4px);
 }
 
-.upgradeButton{
+.upgradeButton {
   background-color: #7a1bd2;
   border: none;
   display: block;
   justify-content: center;
   text-decoration: none;
   font-size: 15px;
-  
+
   width: 100%;
   height: 100%;
 }
