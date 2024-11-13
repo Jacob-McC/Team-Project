@@ -3,37 +3,52 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  background-color: #2C1810; 
+  color: #E5C992; 
+  font-family: 'Serif'; 
 }
 
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 9fr 1fr;
-  background-color: #2196f3;
+  background-color: #3B2417; 
   width: 100vw;
   gap: 10px;
   height: 100vh;
+  padding: 10px;
+  box-sizing: border-box; 
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .gridContainer > div {
-  background-color: rgba(22, 92, 25, 0.082);
+  background-color: rgba(89, 55, 31, 0.7); 
   text-align: center;
   font-size: 30px;
+  border: 1px solid #8B4513; 
+  border-radius: 8px;
+  overflow: auto; /* Add scrolling if content overflows */
 }
+
 .upgradeDiv {
-  background-color: rgba(109, 92, 25, 0.082);
+  background-color: rgba(139, 69, 19, 0.3); 
   display: grid;
   grid-template-columns: 20% 80%;
-  grid-template-rows: auto;
+  grid-template-rows: repeat(8, auto); /* Auto-sized rows for upgrades */
   gap: 10px;
   text-align: center;
   font-size: 30px;
+  padding: 10px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 100%; /* Ensure it doesn't overflow its container */
 }
 
 .upgradeImage {
   height: 100%;
   width: 100%;
+  filter: sepia(0.3) brightness(1.1); /* Gives images a slight aged look */
+  object-fit: contain; /* Maintain aspect ratio */
+  max-height: 80px; /* Limit image height */
 }
 
 .center {
@@ -42,6 +57,33 @@ body {
   grid-template-rows: 40% 60%;
   justify-content: center;
   align-items: center;
+  background-image: url('../images/background.jpg');
+  background-size: contain; /* Changed from cover to contain */
+  background-position: center;
+  background-repeat: repeat; /* Changed from no-repeat to repeat */
+  position: relative;
+  max-height: 100%;
+  image-rendering: -webkit-optimize-contrast; /* Sharpen image in WebKit browsers */
+  image-rendering: crisp-edges; /* Sharpen image in modern browsers */
+}
+
+/* Darker overlay to help text readability if needed */
+.center::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(44, 24, 16, 0.2); /* Reduced opacity for better image visibility */
+  pointer-events: none;
+}
+
+/* If you want to ensure the content stays on top of the background */
+.center h1,
+.center .button {
+  position: relative;
+  z-index: 1; /* Ensures content stays above the overlay */
 }
 
 button {
@@ -53,16 +95,20 @@ button {
   justify-content: center;
   padding: 20%;
   font-size: 60px;
-  background-color: blueviolet;
+  background-color: #8B4513; 
+  color: #FFD700; /* Gold text */
   border-radius: 50%;
-  border: none;
-  transition-duration: 0.3s;
-  box-shadow: 0px 0px 5px 5px;
+  border: 2px solid #DAA520; /* Golden rod border */
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(218, 165, 32, 0.4); /* Golden glow */
+  position: relative;
 }
 
 .button > button:hover {
-  background-color: #7a1bd2;
+  background-color: #A0522D; /* Lighter brown on hover */
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); /* Brighter golden glow */
 }
+
 .button > button:active {
   transition-duration: 0ms;
   box-shadow: inset 3px 3px 15px #000;
@@ -70,13 +116,65 @@ button {
 }
 
 .upgradeButton {
-  background-color: #7a1bd2;
-  border: none;
+  background-color: #704214; /* Dark brown */
+  border: 1px solid #DAA520; /* Golden rod border */
+  color: #FFD700; /* Gold text */
   display: block;
   justify-content: center;
   text-decoration: none;
   font-size: 15px;
-
   width: 100%;
-  height: 100%;
+  min-height: 80px; /* Set minimum height */
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.upgradeButton:hover {
+  background-color: #8B5622; /* Lighter brown on hover */
+  border-color: #FFD700; /* Brighter gold border on hover */
+}
+
+.SettingsBtn {
+  background-color: #704214;
+  border: 1px solid #DAA520;
+  color: #FFD700;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.SettingsBtn:hover {
+  background-color: #8B5622;
+  border-color: #FFD700;
+}
+
+/* Style for cost and income text */
+i {
+  color: #E5C992; /* Lighter gold for info text */
+}
+
+/* Style for upgrade names */
+.upgradeName {
+  color: #FFD700; /* Brighter gold for upgrade names */
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2C1810;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8B4513;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A0522D;
 }
