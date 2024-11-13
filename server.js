@@ -30,7 +30,7 @@ app.post("/register", (req, res) => {
   const { username, password } = req.body;
   // Insert form data into the SQLite database
   // The '?' are temp values that are then filled based on the parameters passed in
-  const sql = `INSERT INTO users (name, password, money) VALUES (?, ?, 0)`;
+  const sql = `INSERT INTO users (name, password, money, upgrades) VALUES (?, ?, 0, 0-0-0-0-0-0-0-0)`;
   db.run(sql, [username, password], function (err) {
     if (err) {
       return res.status(500).send("Database error");
@@ -56,6 +56,22 @@ app.post("/login", (req, res) => {
       res.redirect("/");
     } else {
       res.redirect("/login");
+      //Need to give the user a message or something
+    }
+  });
+});
+
+app.get("/getUpgrades", (req, res) => {
+  const ID = req.query.UserID;
+  const sql = `SELECT upgrades from users WHERE id = ?`;
+
+  db.get(sql, [ID], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: "Database error" });
+    }
+    if (row) {
+      res.json(row);
+    } else {
       //Need to give the user a message or something
     }
   });

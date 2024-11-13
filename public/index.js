@@ -1,8 +1,10 @@
-"use strict";
-
 //I love putting all this code in one function, can't wait to see what it looks like at the end lol
 
-window.addEventListener("load", function () {
+var Upgrades;
+
+window.addEventListener("load", async function () {
+  await getUpgrades();
+  console.log("Upgrades " + Upgrades);
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
   var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
@@ -82,4 +84,24 @@ function SettingsClick() {
 function SaveClick() {
   alert("Save button is working");
   //do some bullshit with modals here future me
+}
+
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+  // Return a string that serves as the warning message in some browsers
+  return "Are you sure you want to leave this page?";
+});
+
+async function getUpgrades() {
+  UserID = "1";
+  //THIS IS TEMP
+  try {
+    // Send a request to the server endpoint
+    const response = await fetch(`/getUpgrades?UserID=${UserID}`);
+    if (!response.ok) throw new Error("User not found");
+    const data = await response.json();
+    Upgrades = JSON.stringify(data.upgrades);
+  } catch (error) {
+    console.log("FUCKED");
+  }
 }

@@ -15,14 +15,15 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,
       password TEXT,
-      money INTEGER
+      money INTEGER,
+      upgrades TEXT
     )
   `);
   db.run(
-    `INSERT INTO users (name,password,money) VALUES ('testName', 'testpass', '10')`
+    `INSERT INTO users (name,password,money,upgrades) VALUES ('testName', 'testpass', '10', '0-0-0-0-0-0-0-0')`
   );
   db.run(
-    `INSERT INTO users (name,password,money) VALUES ('testName2', 'testpass2', '509')`
+    `INSERT INTO users (name,password,money,upgrades) VALUES ('testName2', 'testpass2', '509', '0-0-0-0-0-0-0-0')`
   );
   console.log("Database has been reset, i hope this was intentional...");
 });
