@@ -1,9 +1,13 @@
 //I love putting all this code in one function, can't wait to see what it looks like at the end lol
 
 var Upgrades;
+var money;
 
 window.addEventListener("load", async function () {
-  await getUpgrades();
+  await getStats();
+  var UpgradesArray = Upgrades.split("-");
+  console.log(UpgradesArray);
+
   console.log("Upgrades " + Upgrades);
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
@@ -92,12 +96,12 @@ window.addEventListener("beforeunload", function (event) {
   return "Are you sure you want to leave this page?";
 });
 
-async function getUpgrades() {
+async function getStats() {
   UserID = "1";
   //THIS IS TEMP
   try {
     // Send a request to the server endpoint
-    const response = await fetch(`/getUpgrades?UserID=${UserID}`);
+    const response = await fetch(`/getStats?UserID=${UserID}`);
     if (!response.ok) throw new Error("User not found");
     const data = await response.json();
     Upgrades = JSON.stringify(data.upgrades);

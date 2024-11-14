@@ -61,7 +61,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.get("/getUpgrades", (req, res) => {
+app.get("/getStats", (req, res) => {
   const ID = req.query.UserID;
   const sql = `SELECT upgrades from users WHERE id = ?`;
 
@@ -73,6 +73,17 @@ app.get("/getUpgrades", (req, res) => {
       res.json(row);
     } else {
       //Need to give the user a message or something
+    }
+  });
+});
+
+app.post("/saveStats", (req, res) => {
+  const { money, Upgrades, UserID } = req.body;
+  const sql = "UPDATE users SET money = ?, Upgrades = ? WHERE id = ?";
+
+  db.run(sql, [money, Upgrades, UserID], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: "Database error" });
     }
   });
 });
