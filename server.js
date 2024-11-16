@@ -79,11 +79,16 @@ app.get("/getStats", (req, res) => {
 
 app.post("/saveStats", (req, res) => {
   const { money, Upgrades, UserID } = req.body;
-  const sql = "UPDATE users SET money = ?, Upgrades = ? WHERE id = ?";
-
-  db.run(sql, [money, Upgrades, UserID], (err, row) => {
+  const notFucked = parseInt(UserID, 10);
+  const sql = "UPDATE users SET money = ?, Upgrades = ?";
+  console.log("Inside has been reached");
+  console.log(req.body);
+  db.run(sql, [money, Upgrades], function (err) {
     if (err) {
+      console.log("FUCKED");
       return res.status(500).json({ error: "Database error" });
+    } else {
+      console.log("NOT FUCKED");
     }
   });
 });

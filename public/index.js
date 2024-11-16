@@ -1,7 +1,7 @@
 //I love putting all this code in one function, can't wait to see what it looks like at the end lol
 
 var Upgrades;
-var money;
+var money = 0;
 
 window.addEventListener("load", async function () {
   await getStats();
@@ -85,9 +85,27 @@ function SettingsClick() {
   //do some bullshit with modals here future me
 }
 
-function SaveClick() {
+async function SaveClick() {
   alert("Save button is working");
-  //do some bullshit with modals here future me
+  const formData = new URLSearchParams();
+  UserID = "1";
+  //THIS IS TEMP
+
+  formData.append("userID", UserID);
+  formData.append("money", money);
+  formData.append("Upgrades", Upgrades);
+  try {
+    const response = await fetch(`/saveStats`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: formData.toString(),
+    });
+    const data = await response.json();
+  } catch (error) {
+    console.log("FUCKED");
+  }
 }
 
 window.addEventListener("beforeunload", function (event) {
