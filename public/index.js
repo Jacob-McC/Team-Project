@@ -80,10 +80,27 @@ window.addEventListener("load", async function () {
   }
 });
 
+//Modal stuff
+
+var modal = document.getElementById("Modal");
+var span = document.getElementsByClassName("close")[0];
+
 function SettingsClick() {
-  alert("Settings button is working");
-  //do some bullshit with modals here future me
+  modal.style.display = "block";
 }
+span.onclick = function () {
+  modal.style.display = "none";
+};
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+//Modal stuff
+
+//To explain why the fetch function looks like that, in the server.js the middleware being used is bodyparser, as apposed to json
+//Because of that the data needs to be transfered in the beautiful way shown below. Do i know how it works? like 50% of it
 
 async function SaveClick() {
   alert("Save button is working");

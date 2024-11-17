@@ -3,35 +3,35 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #2C1810; 
-  color: #E5C992; 
-  font-family: 'Serif'; 
+  background-color: #2c1810;
+  color: #e5c992;
+  font-family: "Serif";
 }
 
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 9fr 1fr;
-  background-color: #3B2417; 
+  background-color: #3b2417;
   width: 100vw;
   gap: 10px;
   height: 100vh;
   padding: 10px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .gridContainer > div {
-  background-color: rgba(89, 55, 31, 0.7); 
+  background-color: rgba(89, 55, 31, 0.7);
   text-align: center;
   font-size: 30px;
-  border: 1px solid #8B4513; 
+  border: 1px solid #8b4513;
   border-radius: 8px;
   overflow: auto; /* Add scrolling if content overflows */
 }
 
 .upgradeDiv {
-  background-color: rgba(139, 69, 19, 0.3); 
+  background-color: rgba(139, 69, 19, 0.3);
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: repeat(8, auto); /* Auto-sized rows for upgrades */
@@ -57,7 +57,7 @@ body {
   grid-template-rows: 40% 60%;
   justify-content: center;
   align-items: center;
-  background-image: url('../images/background.jpg');
+  background-image: url("../images/background.jpg");
   background-size: contain; /* Changed from cover to contain */
   background-position: center;
   background-repeat: repeat; /* Changed from no-repeat to repeat */
@@ -69,13 +69,18 @@ body {
 
 /* Darker overlay to help text readability if needed */
 .center::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(44, 24, 16, 0.2); /* Reduced opacity for better image visibility */
+  background-color: rgba(
+    44,
+    24,
+    16,
+    0.2
+  ); /* Reduced opacity for better image visibility */
   pointer-events: none;
 }
 
@@ -83,7 +88,7 @@ body {
 .center h1,
 .center .button {
   position: relative;
-  z-index: 1; /* Ensures content stays above the overlay */
+  z-index: 0.9; /* Ensures content stays above the overlay */
 }
 
 button {
@@ -95,17 +100,17 @@ button {
   justify-content: center;
   padding: 20%;
   font-size: 60px;
-  background-color: #8B4513; 
-  color: #FFD700; /* Gold text */
+  background-color: #8b4513;
+  color: #ffd700; /* Gold text */
   border-radius: 50%;
-  border: 2px solid #DAA520; /* Golden rod border */
+  border: 2px solid #daa520; /* Golden rod border */
   transition: all 0.3s ease;
   box-shadow: 0 0 15px rgba(218, 165, 32, 0.4); /* Golden glow */
   position: relative;
 }
 
 .button > button:hover {
-  background-color: #A0522D; /* Lighter brown on hover */
+  background-color: #a0522d; /* Lighter brown on hover */
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); /* Brighter golden glow */
 }
 
@@ -117,8 +122,8 @@ button {
 
 .upgradeButton {
   background-color: #704214; /* Dark brown */
-  border: 1px solid #DAA520; /* Golden rod border */
-  color: #FFD700; /* Gold text */
+  border: 1px solid #daa520; /* Golden rod border */
+  color: #ffd700; /* Gold text */
   display: block;
   justify-content: center;
   text-decoration: none;
@@ -132,32 +137,32 @@ button {
 }
 
 .upgradeButton:hover {
-  background-color: #8B5622; /* Lighter brown on hover */
-  border-color: #FFD700; /* Brighter gold border on hover */
+  background-color: #8b5622; /* Lighter brown on hover */
+  border-color: #ffd700; /* Brighter gold border on hover */
 }
 
 .SettingsBtn {
   background-color: #704214;
-  border: 1px solid #DAA520;
-  color: #FFD700;
+  border: 1px solid #daa520;
+  color: #ffd700;
   padding: 10px 20px;
   border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .SettingsBtn:hover {
-  background-color: #8B5622;
-  border-color: #FFD700;
+  background-color: #8b5622;
+  border-color: #ffd700;
 }
 
 /* Style for cost and income text */
 i {
-  color: #E5C992; /* Lighter gold for info text */
+  color: #e5c992; /* Lighter gold for info text */
 }
 
 /* Style for upgrade names */
 .upgradeName {
-  color: #FFD700; /* Brighter gold for upgrade names */
+  color: #ffd700; /* Brighter gold for upgrade names */
 }
 
 /* Custom scrollbar styling */
@@ -166,15 +171,48 @@ i {
 }
 
 ::-webkit-scrollbar-track {
-  background: #2C1810;
+  background: #2c1810;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8B4513;
+  background: #8b4513;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A0522D;
+  background: #a0522d;
+}
+
+.SettingsModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.SettingsContent {
+  background-color: #a0522d;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ffd700;
+  width: 80%;
+}
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

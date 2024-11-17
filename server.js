@@ -92,3 +92,8 @@ app.post("/saveStats", (req, res) => {
     }
   });
 });
+
+///IMPORTANT
+///Before hand in, we need some quality assurance to fix all mentions of the word 'Fucked'
+///or close to that that i have included whilst testing
+///Keeping it as is now because i am still testing - Jacob
