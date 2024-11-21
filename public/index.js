@@ -7,7 +7,7 @@ window.addEventListener("load", async function () {
   await getStats();
   var UpgradesArray = Upgrades.split("-");
   console.log(UpgradesArray);
-
+  var TotalMoneyEarned = 578902;
   console.log("Upgrades " + Upgrades);
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
@@ -15,11 +15,14 @@ window.addEventListener("load", async function () {
   var upgradeName = this.document.getElementsByClassName("upgradeName"); //The name of each upgrade
   var upgradeIncome = this.document.getElementsByClassName("upgradeIncome"); //The rate of income for each upgrade
   var currencyText = this.document.getElementsByName("currency")[0]; //The text for the user's currency
-  var incomeText = this.document.getElementsByName("income")[0] //The text for the user's current income
+  var incomeText = this.document.getElementsByName("income")[0]; //The text for the user's current income
   var currency = parseInt(currencyText.textContent.substring(1));
   var upgradeOwned = [...Array(upgradeButton.length).fill(0)]; //The amount of each upgrade the user owns
   var totalRateOfIncome = 0; //The rate of income of every upgrade added up
   var clickScale = 1; //For if any of the upgrades increase money per click
+  var LevelCounter = this.document.getElementById("CurLevel");
+  var LevelPercent = this.document.getElementById("LevelPercent");
+  var LevelProgressBar = this.document.getElementById("Level");
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
@@ -65,6 +68,20 @@ window.addEventListener("load", async function () {
   }
 
   window.setInterval(passiveIncome, 100);
+  window.setInterval(calculateLevel(TotalMoneyEarned), 100);
+
+  function calculateLevel(TotalMoneyEarned) {
+    var Level = TotalMoneyEarned.toString().length;
+    var NextLevel = Math.trunc(
+      (TotalMoneyEarned /
+        Math.pow(10, Math.ceil(Math.log10(TotalMoneyEarned)))) *
+        100
+    );
+    console.log("Level:" + Level);
+    LevelCounter.textContent = "Current Level: " + Level.toString();
+    LevelPercent.textContent = NextLevel + "%";
+    LevelProgressBar.value = NextLevel;
+  }
 
   function changeCurrency(currency) {
     if (currency >= 0) {

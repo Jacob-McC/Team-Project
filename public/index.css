@@ -216,3 +216,6 @@ i {
   text-decoration: none;
   cursor: pointer;
 }
+#Level {
+  width: 80%;
+}

@@ -161,7 +161,12 @@
           <b class="Settings">Settings</b><br />
         </button>
       </div>
-      <div>Progres bar should go here, whatever that should do</div>
+      <div>
+        <label for="Level" id="CurLevel">Current Level: </label>
+        <br />
+        <progress id="Level" value="30" max="100"></progress>
+        <span id="LevelPercent">Temp</span>
+      </div>
       <div>
         <button class="upgradeButton" name="upgrade8" onclick="SaveClick()">
           <b class="upgradeName">Save Progress</b><br />
