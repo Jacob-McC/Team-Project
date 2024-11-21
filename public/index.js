@@ -65,6 +65,7 @@ window.addEventListener("load", async function () {
         }
         console.log("Total rate of Income is: " + totalRateOfIncome);
         changeIncomeText(totalRateOfIncome);
+        scaleUpgradeCost(upgradeCost[i].textContent, upgradeOwned[i], i)
       } else {
         console.log("Upgrade not bought.");
       }
@@ -115,6 +116,16 @@ window.addEventListener("load", async function () {
     currency += totalRateOfIncome / 10;
     calculateLevel(TotalMoneyEarned);
     changeCurrency(currency);
+  }
+
+  function scaleUpgradeCost(currentCost, upgradesOwned, i) {
+    console.log("currentCost = " + currentCost);
+    console.log("upgradesOwned = " + (upgradesOwned));
+    console.log("Idk what's going on: " + ((10 * (upgradesOwned))**2));
+    newCost = Math.trunc(currentCost * (1.15**upgradesOwned));
+    console.log("New cost is now " + newCost + " and now causing inflation lol.");
+    upgradeCost[i].textContent = newCost;
+
   }
 });
 
