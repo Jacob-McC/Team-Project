@@ -7,7 +7,7 @@ window.addEventListener("load", async function () {
   await getStats();
   var UpgradesArray = Upgrades.split("-");
   console.log(UpgradesArray);
-  var TotalMoneyEarned = 578902;
+  var TotalMoneyEarned = 0;
   console.log("Upgrades " + Upgrades);
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
@@ -25,14 +25,19 @@ window.addEventListener("load", async function () {
   var LevelProgressBar = this.document.getElementById("Level");
   var ClickSound = new Audio("/sounds/clicksound.wav");
   var UpgradeSound = new Audio("/sounds/upgradesound.wav");
+  var SoundEffectsONOFF = this.document.getElementById("SoundEffectsCheckbox");
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
 
   clickerButton.addEventListener("click", function () {
     //When clicker is clicked it will put money up
-    ClickSound.play();
+    if ((SoundEffectsONOFF.checked = true)) {
+      ClickSound.play();
+    }
     currency++;
+    TotalMoneyEarned++;
+    console.log("Total: " + TotalMoneyEarned);
     console.log("Currency: " + currency);
     currencyText.textContent = "$ " + currency;
     console.log(
@@ -72,17 +77,20 @@ window.addEventListener("load", async function () {
       );
     });
   }
-
   window.setInterval(passiveIncome, 100);
-  window.setInterval(calculateLevel(TotalMoneyEarned), 100);
 
   function calculateLevel(TotalMoneyEarned) {
-    var Level = TotalMoneyEarned.toString().length;
-    var NextLevel = Math.trunc(
-      (TotalMoneyEarned /
-        Math.pow(10, Math.ceil(Math.log10(TotalMoneyEarned)))) *
-        100
-    );
+    var Level = TotalMoneyEarned.toString().length - 1;
+    if (TotalMoneyEarned > 0) {
+      var NextLevel = Math.trunc(
+        (TotalMoneyEarned /
+          Math.pow(10, Math.ceil(Math.log10(TotalMoneyEarned)))) *
+          100
+      );
+    } else {
+      var NextLevel = 0;
+    }
+    console.log("Next Level: " + NextLevel);
     console.log("Level:" + Level);
     LevelCounter.textContent = "Current Level: " + Level.toString();
     LevelPercent.textContent = NextLevel + "%";
@@ -105,6 +113,7 @@ window.addEventListener("load", async function () {
   function passiveIncome() {
     console.log("Current Currency is: " + currency);
     currency += totalRateOfIncome / 10;
+    calculateLevel(TotalMoneyEarned);
     changeCurrency(currency);
   }
 });
