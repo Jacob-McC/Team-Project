@@ -15,6 +15,7 @@ window.addEventListener("load", async function () {
   var upgradeName = this.document.getElementsByClassName("upgradeName"); //The name of each upgrade
   var upgradeIncome = this.document.getElementsByClassName("upgradeIncome"); //The rate of income for each upgrade
   var currencyText = this.document.getElementsByName("currency")[0]; //The text for the user's currency
+  var incomeText = this.document.getElementsByName("income")[0] //The text for the user's current income
   var currency = parseInt(currencyText.textContent.substring(1));
   var upgradeOwned = [...Array(upgradeButton.length).fill(0)]; //The amount of each upgrade the user owns
   var totalRateOfIncome = 0; //The rate of income of every upgrade added up
@@ -49,6 +50,7 @@ window.addEventListener("load", async function () {
           totalRateOfIncome += upgradeOwned[i] * upgradeIncome[i].textContent;
         }
         console.log("Total rate of Income is: " + totalRateOfIncome);
+        changeIncomeText(totalRateOfIncome);
       } else {
         console.log("Upgrade not bought.");
       }
@@ -71,6 +73,10 @@ window.addEventListener("load", async function () {
       console.log("Can't put currency below 0");
       return;
     }
+  }
+
+  function changeIncomeText(income) {
+    incomeText.textContent = "$ " + income + "/s";
   }
 
   function passiveIncome() {
