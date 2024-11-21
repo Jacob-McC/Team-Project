@@ -23,24 +23,30 @@ window.addEventListener("load", async function () {
   var LevelCounter = this.document.getElementById("CurLevel");
   var LevelPercent = this.document.getElementById("LevelPercent");
   var LevelProgressBar = this.document.getElementById("Level");
+  var ClickSound = new Audio("/sounds/clicksound.wav");
+  var UpgradeSound = new Audio("/sounds/upgradesound.wav");
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
 
   clickerButton.addEventListener("click", function () {
     //When clicker is clicked it will put money up
+    ClickSound.play();
     currency++;
     console.log("Currency: " + currency);
     currencyText.textContent = "$ " + currency;
     console.log(
       "The button has been clicked!!! We are now at: " + currency + " Clicks!"
     );
+    ClickSound.currentTime = 0;
   });
 
   for (let i = 0; i < upgradeButton.length; i++) {
     upgradeButton[i].addEventListener("click", function () {
       console.log("This upgrade costs: " + upgradeCost[i].textContent);
       if (parseInt(currency) >= upgradeCost[i].textContent) {
+        UpgradeSound.play();
+        UpgradeSound.currentTime = 0;
         currency = currency - upgradeCost[i].textContent;
         changeCurrency(currency);
         upgradeOwned[i]++;
