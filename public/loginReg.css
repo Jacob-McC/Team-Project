@@ -1,11 +1,11 @@
 /* Variables for consistent colors */
 :root {
-  --deep-brown: #4A3021;
-  --medium-brown: #8B4513;
-  --light-brown: #DEB887;
-  --gold: #DAA520;
-  --light-gold: #FFD700;
-  --cream: #FFF8DC;
+  --deep-brown: #4a3021;
+  --medium-brown: #8b4513;
+  --light-brown: #deb887;
+  --gold: #daa520;
+  --light-gold: #ffd700;
+  --cream: #fff8dc;
 }
 
 body,
@@ -16,7 +16,7 @@ html {
   align-items: center;
   justify-content: center;
   background-color: var(--cream);
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   min-height: 800px;
 }
 
@@ -125,7 +125,7 @@ input[type="password"]:focus {
 
 /* Optional decorative elements */
 .form-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -10px;
@@ -136,4 +136,8 @@ input[type="password"]:focus {
   z-index: -1;
   opacity: 0.5;
   pointer-events: none;
+}
+.guest {
+  text-align: center;
+  margin-top: 2rem;
 }

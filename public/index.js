@@ -25,14 +25,13 @@ window.addEventListener("load", async function () {
   var LevelProgressBar = this.document.getElementById("Level");
   var ClickSound = new Audio("/sounds/clicksound.wav");
   var UpgradeSound = new Audio("/sounds/upgradesound.wav");
-  var SoundEffectsONOFF = this.document.getElementById("SoundEffectsCheckbox");
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
 
   clickerButton.addEventListener("click", function () {
     //When clicker is clicked it will put money up
-    if ((SoundEffectsONOFF.checked = true)) {
+    if (SoundCheckbox.checked) {
       ClickSound.play();
     }
     currency++;
@@ -50,7 +49,9 @@ window.addEventListener("load", async function () {
     upgradeButton[i].addEventListener("click", function () {
       console.log("This upgrade costs: " + upgradeCost[i].textContent);
       if (parseInt(currency) >= upgradeCost[i].textContent) {
-        UpgradeSound.play();
+        if (SoundCheckbox.checked) {
+          UpgradeSound.play();
+        }
         UpgradeSound.currentTime = 0;
         currency = currency - upgradeCost[i].textContent;
         changeCurrency(currency);
@@ -65,7 +66,7 @@ window.addEventListener("load", async function () {
         }
         console.log("Total rate of Income is: " + totalRateOfIncome);
         changeIncomeText(totalRateOfIncome);
-        scaleUpgradeCost(upgradeCost[i].textContent, upgradeOwned[i], i)
+        scaleUpgradeCost(upgradeCost[i].textContent, upgradeOwned[i], i);
       } else {
         console.log("Upgrade not bought.");
       }
@@ -120,12 +121,13 @@ window.addEventListener("load", async function () {
 
   function scaleUpgradeCost(currentCost, upgradesOwned, i) {
     console.log("currentCost = " + currentCost);
-    console.log("upgradesOwned = " + (upgradesOwned));
-    console.log("Idk what's going on: " + ((10 * (upgradesOwned))**2));
-    newCost = Math.trunc(currentCost * (1.15**upgradesOwned));
-    console.log("New cost is now " + newCost + " and now causing inflation lol.");
+    console.log("upgradesOwned = " + upgradesOwned);
+    console.log("Idk what's going on: " + (10 * upgradesOwned) ** 2);
+    newCost = Math.trunc(currentCost * 1.15 ** upgradesOwned);
+    console.log(
+      "New cost is now " + newCost + " and now causing inflation lol."
+    );
     upgradeCost[i].textContent = newCost;
-
   }
 });
 
@@ -193,3 +195,23 @@ async function getStats() {
     console.log("FUCKED");
   }
 }
+
+var SoundCheckbox = document.getElementById("SoundEffectsCheckbox");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const CheckBoxState = localStorage.getItem("checkboxState");
+  if (CheckBoxState === "checked") {
+    SoundCheckbox.checked = true;
+  }
+});
+SoundCheckbox.addEventListener("change", () => {
+  if (SoundCheckbox.checked) {
+    localStorage.setItem("checkboxState", "checked");
+  } else {
+    localStorage.setItem("checkboxState", "unchecked");
+  }
+});
+//this is vodo
+//to get around the stupid button not saving it's state!
+
+//Future idea for future me, make div 1 maybe an information tab, or the updates tab like previously discussed!
