@@ -3,13 +3,19 @@
 var Upgrades;
 var money = 0;
 
-console.log("This is ther userID: " + sessionStorage.getItem("userID"));
+if (sessionStorage.getItem("userID") == null) {
+  sessionStorage.setItem("userID", 0);
+}
+
+console.log("this is the userID: " + sessionStorage.getItem("userID"));
+
 //working for guest login
 
 window.addEventListener("load", async function () {
   await getStats();
+  console.log("Upgrades: " + Upgrades);
   var UpgradesArray = Upgrades.split("-");
-  console.log(UpgradesArray);
+  console.log("This is the upgrades array: " + UpgradesArray);
   var TotalMoneyEarned = 0;
   console.log("Upgrades " + Upgrades);
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
@@ -157,7 +163,7 @@ window.onclick = function (event) {
 //Because of that the data needs to be transfered in the beautiful way shown below. Do i know how it works? like 50% of it
 
 async function SaveClick() {
-  if (sessionStorage.getItem("userID") == 0) {
+  if (sessionStorage.getItem("userID") != 0) {
     alert("You are a guest, saving is disabled unless you create an account!");
   } else {
     alert("Save button is working");
@@ -190,8 +196,7 @@ window.addEventListener("beforeunload", function (event) {
 });
 
 async function getStats() {
-  UserID = "1";
-  //THIS IS TEMP
+  UserID = sessionStorage.getItem("userID");
   try {
     // Send a request to the server endpoint
     const response = await fetch(`/getStats?UserID=${UserID}`);

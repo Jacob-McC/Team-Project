@@ -53,7 +53,6 @@ app.post("/login", (req, res) => {
       return res.status(500).send("Database error");
     }
     if (row) {
-      sessionStorage.setItem("userID", row);
       res.redirect("/");
     } else {
       res.redirect("/login");
@@ -72,6 +71,7 @@ app.get("/getStats", (req, res) => {
     }
     if (row) {
       res.json(row);
+      console.log(row);
     } else {
       //Need to give the user a message or something
     }
@@ -84,6 +84,7 @@ app.post("/saveStats", (req, res) => {
   const sql = "UPDATE users SET money = ?, Upgrades = ?";
   console.log("Inside has been reached");
   console.log(req.body);
+  console.log(Upgrades);
   db.run(sql, [money, Upgrades], function (err) {
     if (err) {
       console.log("FUCKED");
