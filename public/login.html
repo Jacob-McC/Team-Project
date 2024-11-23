@@ -44,10 +44,16 @@
         <a href="http://localhost:3000/bored.html">Forgot Password?</a>
       </div>
       <div class="guest">
-        <a href="http://localhost:3000/"
+        <a id="guestLink" href="http://localhost:3000/"
           >Play as Guest, Saving will be disabled!</a
         >
       </div>
     </div>
+    <script>
+      var guestLink = document.getElementById("guestLink");
+      guestLink.onclick = function () {
+        sessionStorage.setItem("userID", 0);
+      };
+    </script>
   </body>
 </html>

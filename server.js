@@ -47,12 +47,13 @@ app.post("/login", (req, res) => {
 
   // Insert form data into the SQLite database
   // The '?' are temp values that are then filled based on the parameters passed in
-  const sql = `SELECT * FROM users WHERE name = ? AND password = ?`;
+  const sql = `SELECT id FROM users WHERE name = ? AND password = ?`;
   db.get(sql, [username, password], (err, row) => {
     if (err) {
       return res.status(500).send("Database error");
     }
     if (row) {
+      sessionStorage.setItem("userID", row);
       res.redirect("/");
     } else {
       res.redirect("/login");

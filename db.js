@@ -20,6 +20,11 @@ db.serialize(() => {
     )
   `);
   db.run(
+    `INSERT INTO users (id,name,password,money,upgrades) VALUES ('0','Guest', 'Guestpass', '0', '0-0-0-0-0-0-0-0')`
+  );
+  //USERID 0 IS FOR GUEST USERS, THE VALUES IN IT SHOULD NEVER BE UPDATED
+  //key word 'should'
+  db.run(
     `INSERT INTO users (name,password,money,upgrades) VALUES ('testName', 'testpass', '10', '0-0-0-0-0-0-0-0')`
   );
   db.run(

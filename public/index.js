@@ -3,6 +3,9 @@
 var Upgrades;
 var money = 0;
 
+console.log("This is ther userID: " + sessionStorage.getItem("userID"));
+//working for guest login
+
 window.addEventListener("load", async function () {
   await getStats();
   var UpgradesArray = Upgrades.split("-");
@@ -154,25 +157,29 @@ window.onclick = function (event) {
 //Because of that the data needs to be transfered in the beautiful way shown below. Do i know how it works? like 50% of it
 
 async function SaveClick() {
-  alert("Save button is working");
-  const formData = new URLSearchParams();
-  UserID = "1";
-  //THIS IS TEMP
+  if (sessionStorage.getItem("userID") == 0) {
+    alert("You are a guest, saving is disabled unless you create an account!");
+  } else {
+    alert("Save button is working");
+    const formData = new URLSearchParams();
+    UserID = "1";
+    //THIS IS TEMP
 
-  formData.append("userID", UserID);
-  formData.append("money", money);
-  formData.append("Upgrades", Upgrades);
-  try {
-    const response = await fetch(`/saveStats`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: formData.toString(),
-    });
-    const data = await response.json();
-  } catch (error) {
-    console.log("FUCKED");
+    formData.append("userID", UserID);
+    formData.append("money", money);
+    formData.append("Upgrades", Upgrades);
+    try {
+      const response = await fetch(`/saveStats`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData.toString(),
+      });
+      const data = await response.json();
+    } catch (error) {
+      console.log("FUCKED");
+    }
   }
 }
 
@@ -211,7 +218,7 @@ SoundCheckbox.addEventListener("change", () => {
     localStorage.setItem("checkboxState", "unchecked");
   }
 });
-//this is vodo
+//this is voodoo
 //to get around the stupid button not saving it's state!
 
 //Future idea for future me, make div 1 maybe an information tab, or the updates tab like previously discussed!
