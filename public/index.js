@@ -2,6 +2,7 @@
 
 var Upgrades;
 var money = 0;
+var CompareLevel = 0;
 
 if (sessionStorage.getItem("userID") == null) {
   sessionStorage.setItem("userID", 0);
@@ -96,6 +97,10 @@ window.addEventListener("load", async function () {
 
   function calculateLevel(TotalMoneyEarned) {
     var Level = TotalMoneyEarned.toString().length - 1;
+    if (Level > CompareLevel && LevelUpCheckBox.checked == true) {
+      window.alert("Congratulations! You have levelled up to level: " + Level);
+    }
+    CompareLevel = Level;
     if (TotalMoneyEarned > 0) {
       var NextLevel = Math.trunc(
         (TotalMoneyEarned /
@@ -105,8 +110,6 @@ window.addEventListener("load", async function () {
     } else {
       var NextLevel = 0;
     }
-    console.log("Next Level: " + NextLevel);
-    console.log("Level:" + Level);
     LevelCounter.textContent = "Current Level: " + Level.toString();
     LevelPercent.textContent = NextLevel + "%";
     LevelProgressBar.value = NextLevel;
@@ -114,24 +117,24 @@ window.addEventListener("load", async function () {
     checkLevel(Level, upgradeButton, upgradeLevels);
   }
 
-  function checkLevel(level, upgradeButton, upgradeLevels){
+  function checkLevel(level, upgradeButton, upgradeLevels) {
     console.log("checkLevel Check: " + level);
-    for(let i=0; i < upgradeButton.length; i++){
-      if (level >= upgradeLevels[i]){
+    for (let i = 0; i < upgradeButton.length; i++) {
+      if (level >= upgradeLevels[i]) {
         upgradeButton[i].disabled = false;
       }
     }
   }
-  
-  function initUpgradeButtons(upgradeButton){
+
+  function initUpgradeButtons(upgradeButton) {
     console.log("setUpgradeButtons has happened.");
     upgradeButton.disabled = true;
   }
 
-  function setLevels(upgrades){
-    var temp = []
-    for(let i = 0; i <= upgrades; i++){
-      temp.push(i*2);
+  function setLevels(upgrades) {
+    var temp = [];
+    for (let i = 0; i <= upgrades; i++) {
+      temp.push(i * 2);
     }
     console.log("The upgrade levels: " + temp);
     return temp;
@@ -248,18 +251,31 @@ async function getStats() {
 }
 
 var SoundCheckbox = document.getElementById("SoundEffectsCheckbox");
+var LevelUpCheckBox = document.getElementById("LevelUpAlert");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const CheckBoxState = localStorage.getItem("checkboxState");
-  if (CheckBoxState === "checked") {
+  const SoundCheckBoxState = localStorage.getItem("SoundCheckboxState");
+  const LevelCheckBoxState = localStorage.getItem("LevelCheckboxState");
+  if (SoundCheckBoxState === "checked") {
     SoundCheckbox.checked = true;
   }
+  if (LevelCheckBoxState === "checked") {
+    LevelUpCheckBox.checked = true;
+  }
 });
+
 SoundCheckbox.addEventListener("change", () => {
   if (SoundCheckbox.checked) {
-    localStorage.setItem("checkboxState", "checked");
+    localStorage.setItem("SoundCheckboxState", "checked");
   } else {
-    localStorage.setItem("checkboxState", "unchecked");
+    localStorage.setItem("SoundCheckboxState", "unchecked");
+  }
+});
+LevelUpCheckBox.addEventListener("change", () => {
+  if (LevelUpCheckBox.checked) {
+    localStorage.setItem("LevelCheckboxState", "checked");
+  } else {
+    localStorage.setItem("LevelCheckboxState", "unchecked");
   }
 });
 //this is voodoo
