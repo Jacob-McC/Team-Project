@@ -3,6 +3,7 @@ Jacob M todo:
 High priority:
 Sessions - half done
 Information tab (div 1)
+Fix that stupid upgrades database issue! - done
 
 Medium priority:
 Notifications (NO fucking clue how to do this rn)
