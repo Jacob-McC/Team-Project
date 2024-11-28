@@ -138,9 +138,11 @@ window.addEventListener("load", async function () {
       "New cost is now " + newCost + " and now causing inflation lol."
     );
 
-    console.log("upgradesOwned = " + (upgradesOwned));
-    newCost = Math.trunc(currentCost * (1.15**upgradesOwned));
-    console.log("New cost is now " + newCost + " and now causing inflation lol.");
+    console.log("upgradesOwned = " + upgradesOwned);
+    newCost = Math.trunc(currentCost * 1.15 ** upgradesOwned);
+    console.log(
+      "New cost is now " + newCost + " and now causing inflation lol."
+    );
 
     upgradeCost[i].textContent = newCost;
   }
@@ -169,7 +171,6 @@ window.onclick = function (event) {
 //Because of that the data needs to be transfered in the beautiful way shown below. Do i know how it works? like 50% of it
 
 async function SaveClick() {
-  //remember to change below to == after testing
   //IMPORTANT
   if (sessionStorage.getItem("userID") != 0) {
     alert("You are a guest, saving is disabled unless you create an account!");
