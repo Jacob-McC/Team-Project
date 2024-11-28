@@ -130,18 +130,18 @@ window.addEventListener("load", async function () {
 
   function scaleUpgradeCost(currentCost, upgradesOwned, i) {
     console.log("currentCost = " + currentCost);
-<<<<<<< Updated upstream
+
     console.log("upgradesOwned = " + upgradesOwned);
     console.log("Idk what's going on: " + (10 * upgradesOwned) ** 2);
     newCost = Math.trunc(currentCost * 1.15 ** upgradesOwned);
     console.log(
       "New cost is now " + newCost + " and now causing inflation lol."
     );
-=======
+
     console.log("upgradesOwned = " + (upgradesOwned));
     newCost = Math.trunc(currentCost * (1.15**upgradesOwned));
     console.log("New cost is now " + newCost + " and now causing inflation lol.");
->>>>>>> Stashed changes
+
     upgradeCost[i].textContent = newCost;
   }
 });
