@@ -30,7 +30,7 @@ app.post("/register", (req, res) => {
   const { username, password } = req.body;
   // Insert form data into the SQLite database
   // The '?' are temp values that are then filled based on the parameters passed in
-  const sql = `INSERT INTO users (name, password, money, upgrades) VALUES (?, ?, 0, 0-0-0-0-0-0-0-0)`;
+  const sql = `INSERT INTO users (name, password, money, upgrades, totalMoney) VALUES (?, ?, 0, 0-0-0-0-0-0-0-0, 0)`;
   db.run(sql, [username, password], function (err) {
     if (err) {
       return res.status(500).send("Database error");

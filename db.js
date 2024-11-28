@@ -16,14 +16,18 @@ db.serialize(() => {
       name TEXT,
       password TEXT,
       money INTEGER,
-      upgrades TEXT
+      upgrades TEXT,
+      totalMoney INTEGER
     )
   `);
   db.run(
-    `INSERT INTO users (name,password,money,upgrades) VALUES ('testName', 'testpass', '10', '0-0-0-0-0-0-0-0')`
+    `INSERT INTO users (id, name,password,money,upgrades,totalMoney) VALUES (0, 'GuestUser', 'fajksdhfaskjlfbn', '10', '0-0-0-0-0-0-0-0', '1000')`
   );
   db.run(
-    `INSERT INTO users (name,password,money,upgrades) VALUES ('testName2', 'testpass2', '509', '0-0-0-0-0-0-0-0')`
+    `INSERT INTO users (name,password,money,upgrades,totalMoney) VALUES ('testName', 'testpass', '10', '0-0-0-0-0-0-0-0', '1000')`
+  );
+  db.run(
+    `INSERT INTO users (name,password,money,upgrades,totalMoney) VALUES ('testName2', 'testpass2', '509', '0-0-0-0-0-0-0-0', '1000')`
   );
   console.log("Database has been reset, i hope this was intentional...");
 });
