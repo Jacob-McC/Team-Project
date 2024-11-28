@@ -21,6 +21,7 @@ window.addEventListener("load", async function () {
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
   var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
+  var upgradeLevels = [0, 2, 4, 6, 8, 10, 12, 14];
   var upgradeName = this.document.getElementsByClassName("upgradeName"); //The name of each upgrade
   var upgradeIncome = this.document.getElementsByClassName("upgradeIncome"); //The rate of income for each upgrade
   var currencyText = this.document.getElementsByName("currency")[0]; //The text for the user's currency
@@ -124,6 +125,7 @@ window.addEventListener("load", async function () {
   function passiveIncome() {
     console.log("Current Currency is: " + currency);
     currency += totalRateOfIncome / 10;
+    TotalMoneyEarned += totalRateOfIncome / 10;
     calculateLevel(TotalMoneyEarned);
     changeCurrency(currency);
   }
