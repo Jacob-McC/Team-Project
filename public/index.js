@@ -1,7 +1,8 @@
 //I love putting all this code in one function, can't wait to see what it looks like at the end lol
 
 var Upgrades;
-var money = 0;
+var TotalMoneyEarned = 0;
+var currency = 0;
 var CompareLevel = 0;
 
 if (sessionStorage.getItem("userID") == null) {
@@ -14,11 +15,8 @@ console.log("this is the userID: " + sessionStorage.getItem("userID"));
 
 window.addEventListener("load", async function () {
   await getStats();
-  console.log("Upgrades: " + Upgrades);
   var UpgradesArray = Upgrades.split("-");
-  console.log("This is the upgrades array: " + UpgradesArray);
-  var TotalMoneyEarned = 0;
-  console.log("Upgrades " + Upgrades);
+  //This isn't be used yet, too bad!
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
   var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
@@ -26,10 +24,10 @@ window.addEventListener("load", async function () {
   var upgradeIncome = this.document.getElementsByClassName("upgradeIncome"); //The rate of income for each upgrade
   var currencyText = this.document.getElementsByName("currency")[0]; //The text for the user's currency
   var incomeText = this.document.getElementsByName("income")[0]; //The text for the user's current income
-  var currency = parseInt(currencyText.textContent.substring(1));
   var upgradeOwned = [...Array(upgradeButton.length).fill(0)]; //The amount of each upgrade the user owns
   var totalRateOfIncome = 0; //The rate of income of every upgrade added up
   var clickScale = 1; //For if any of the upgrades increase money per click
+  //This isn't be used yet, too bad!
   var LevelCounter = this.document.getElementById("CurLevel");
   var LevelPercent = this.document.getElementById("LevelPercent");
   var LevelProgressBar = this.document.getElementById("Level");
@@ -214,8 +212,10 @@ async function SaveClick() {
     //THIS IS TEMP
 
     formData.append("userID", UserID);
-    formData.append("money", money);
+    formData.append("money", currency);
     formData.append("Upgrades", Upgrades);
+    formData.append("totalMoney", TotalMoneyEarned);
+
     try {
       const response = await fetch(`/saveStats`, {
         method: "POST",
@@ -245,6 +245,8 @@ async function getStats() {
     if (!response.ok) throw new Error("User not found");
     const data = await response.json();
     Upgrades = JSON.stringify(data.upgrades);
+    currency = data.money;
+    TotalMoneyEarned = data.totalMoney;
   } catch (error) {
     console.log("FUCKED");
   }

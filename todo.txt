@@ -2,18 +2,16 @@ Jacob M todo:
 
 High priority:
 Sessions - half done
-Information tab (div 1)
+Information tab (div 1) - Kinda Done
 fix getstats
 fix savestats
 
 Medium priority:
-Notifications (NO fucking clue how to do this rn)
-Have more settings
-MAKE POPUP FOR WHEN LEVEL UP AND ADD SETTING FOR PLAYER TO DISABLE IT 
-ALSO ADD A SOUND FOR THE POPUP
+Notifications - Kinda Done
+Have more settings - Kinda Done
 
 Low priority:
-Make sure no account with the same name can exist
+Make sure no account with the same name can exist 
 Encrypt passwords
 
 
