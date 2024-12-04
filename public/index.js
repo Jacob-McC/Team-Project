@@ -14,8 +14,10 @@ console.log("this is the userID: " + sessionStorage.getItem("userID"));
 //working for guest login
 
 window.addEventListener("load", async function () {
-  await getStats();
-  var UpgradesArray = Upgrades.split("-");
+  if (sessionStorage.getItem("userID") != 0) {
+    await getStats();
+    var UpgradesArray = Upgrades.split("-");
+  }
   //This isn't be used yet, too bad!
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
