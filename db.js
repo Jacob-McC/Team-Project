@@ -21,7 +21,7 @@ db.serialize(() => {
     )
   `);
   db.run(
-    `INSERT INTO users (id, name,password,money,upgrades,totalMoney) VALUES (0, 'GuestUser', 'fajksdhfaskjlfbn', '10', '0-0-0-0-0-0-0-0', '1000')`
+    `INSERT INTO users (id, name,password,money,upgrades,totalMoney) VALUES (0, 'GuestUser', 'fajksdhfaskjlfbn', '0', '0-0-0-0-0-0-0-0', '0')`
   );
   db.run(
     `INSERT INTO users (name,password,money,upgrades,totalMoney) VALUES ('testName', 'testpass', '10', '0-0-0-0-0-0-0-0', '1000')`

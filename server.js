@@ -16,6 +16,9 @@ app.get("/register", (req, res) => {
 app.get("/AccountCreation", (req, res) => {
   res.sendFile(__dirname + "/public/AccountCreation.html");
 });
+app.get("/winner", (req, res) => {
+  res.sendFile(__dirname + "/public/win.html");
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
