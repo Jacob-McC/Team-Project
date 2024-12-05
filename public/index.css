@@ -235,3 +235,7 @@ a:hover {
   color: var(--gold);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
+
+#endGame {
+  display: none;
+}

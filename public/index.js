@@ -36,6 +36,7 @@ window.addEventListener("load", async function () {
   var ClickSound = new Audio("/sounds/clicksound.wav");
   var UpgradeSound = new Audio("/sounds/upgradesound.wav");
   var upgradeLevels = setLevels(upgradeButton.length);
+  var endGameButton = this.document.getElementById("endGame");
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
@@ -124,6 +125,9 @@ window.addEventListener("load", async function () {
         upgradeButton[i].disabled = false;
       }
     }
+    if (level > 3) {
+      this.document.getElementById("endGame").style.display = "block";
+    }
   }
 
   function initUpgradeButtons(upgradeButton) {
@@ -197,6 +201,9 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+function endGame() {
+  location.href = "http://localhost:3000/winner";
+}
 
 //Modal stuff
 
