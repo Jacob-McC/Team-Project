@@ -4,8 +4,10 @@ body {
   padding: 0;
   height: 100%;
   background-color: #2c1810;
-  color: #e5c992;
+  color: #e9eb7a;
   font-family: "Serif";
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 .gridContainer {
@@ -120,7 +122,9 @@ button {
   transform: translateY(4px);
 }
 
-.upgradeButton {
+.upgradeButton,
+.saveButton,
+.SettingsBtn {
   background-color: #704214; /* Dark brown */
   border: 1px solid #daa520; /* Golden rod border */
   color: #ffd700; /* Gold text */
@@ -141,16 +145,8 @@ button {
   border-color: #ffd700; /* Brighter gold border on hover */
 }
 
-.SettingsBtn {
-  background-color: #704214;
-  border: 1px solid #daa520;
-  color: #ffd700;
-  padding: 10px 20px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.SettingsBtn:hover {
+.SettingsBtn:hover,
+.saveButton:hover {
   background-color: #8b5622;
   border-color: #ffd700;
 }

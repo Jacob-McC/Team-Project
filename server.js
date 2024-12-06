@@ -66,7 +66,7 @@ app.post("/login", (req, res) => {
 
 app.get("/getStats", (req, res) => {
   const ID = req.query.UserID;
-  const sql = `SELECT money,upgrades,totalMoney from users WHERE id = ?`;
+  const sql = `SELECT name,money,upgrades,totalMoney from users WHERE id = ?`;
 
   db.get(sql, [ID], (err, row) => {
     if (err) {
@@ -81,11 +81,11 @@ app.get("/getStats", (req, res) => {
 });
 
 app.post("/saveStats", (req, res) => {
-  const { money, Upgrades, UserID, totalMoney } = req.body;
-  const notFucked = parseInt(UserID, 10);
-  const sql = "UPDATE users SET money = ?, Upgrades = ? , totalMoney = ?";
-  const unfuckedUpgrades = Upgrades.match(/\d.*\d/).toString();
-  db.run(sql, [money, unfuckedUpgrades, totalMoney], function (err) {
+  const { money, Upgrades, totalMoney, userID } = req.body;
+  const sql =
+    "UPDATE users SET money = ?, Upgrades = ? , totalMoney = ? WHERE id = ?";
+  const fixedUpgrades = Upgrades.match(/\d.*\d/).toString();
+  db.run(sql, [money, fixedUpgrades, totalMoney, userID], function (err) {
     if (err) {
       console.log("FUCKED");
       return res.status(500).json({ error: "Database error" });

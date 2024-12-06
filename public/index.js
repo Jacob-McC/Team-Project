@@ -4,6 +4,10 @@ var Upgrades;
 var TotalMoneyEarned = 0;
 var currency = 0;
 var CompareLevel = 0;
+var userName = "";
+
+//Testing purposes, set to whatever userID is needed
+sessionStorage.setItem("userID", 0);
 
 if (sessionStorage.getItem("userID") == null) {
   sessionStorage.setItem("userID", 0);
@@ -17,8 +21,14 @@ window.addEventListener("load", async function () {
   if (sessionStorage.getItem("userID") != 0) {
     await getStats();
     var UpgradesArray = Upgrades.split("-");
+    //This isn't be used yet, too bad!
+    console.log("This is the username " + userName);
+    this.document.getElementsByName("Username")[0].textContent =
+      userName + "'s Brewery";
+  } else {
+    this.document.getElementsByName("Username")[0].textContent =
+      "Guest Brewery";
   }
-  //This isn't be used yet, too bad!
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
   var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
@@ -35,6 +45,7 @@ window.addEventListener("load", async function () {
   var LevelProgressBar = this.document.getElementById("Level");
   var ClickSound = new Audio("/sounds/clicksound.wav");
   var UpgradeSound = new Audio("/sounds/upgradesound.wav");
+  var levelUpSound = new Audio("/sounds/LevelUpSound.wav");
   var upgradeLevels = setLevels(upgradeButton.length);
   var endGameButton = this.document.getElementById("endGame");
 
@@ -100,6 +111,10 @@ window.addEventListener("load", async function () {
     var Level = TotalMoneyEarned.toString().length - 1;
     if (Level > CompareLevel && LevelUpCheckBox.checked == true) {
       window.alert("Congratulations! You have levelled up to level: " + Level);
+    }
+    if (Level > CompareLevel && SoundCheckbox.checked) {
+      levelUpSound.play();
+      levelUpSound.currentTime = 0;
     }
     CompareLevel = Level;
     if (TotalMoneyEarned > 0) {
@@ -186,12 +201,13 @@ window.addEventListener("load", async function () {
 });
 
 //Modal stuff
-
 var modal = document.getElementById("Modal");
 var span = document.getElementsByClassName("close")[0];
+var earnedStat = document.getElementById("moneyEarnedStat");
 
 function SettingsClick() {
   modal.style.display = "block";
+  earnedStat.textContent = "$ " + TotalMoneyEarned;
 }
 span.onclick = function () {
   modal.style.display = "none";
@@ -204,20 +220,17 @@ window.onclick = function (event) {
 function endGame() {
   location.href = "http://localhost:3000/winner";
 }
-
 //Modal stuff
-
-//To explain why the fetch function looks like that, in the server.js the middleware being used is bodyparser, as apposed to json
-//Because of that the data needs to be transfered in the beautiful way shown below. Do i know how it works? like 50% of it
 
 async function SaveClick() {
   //IMPORTANT
-  if (sessionStorage.getItem("userID") != 0) {
+  if (sessionStorage.getItem("userID") == 0) {
     alert("You are a guest, saving is disabled unless you create an account!");
   } else {
     alert("Save button is working");
     const formData = new URLSearchParams();
-    UserID = "1";
+    UserID = sessionStorage.getItem("userID");
+    UserID = 1;
     //THIS IS TEMP
 
     formData.append("userID", UserID);
@@ -240,6 +253,9 @@ async function SaveClick() {
   }
 }
 
+//To explain why the fetch function looks like that, in the server.js the middleware being used is bodyparser, as apposed to json
+//Because of that the data needs to be transfered in the beautiful way shown below. Do i know how it works? like 50% of it
+
 window.addEventListener("beforeunload", function (event) {
   event.preventDefault();
   // Return a string that serves as the warning message in some browsers
@@ -253,6 +269,7 @@ async function getStats() {
     const response = await fetch(`/getStats?UserID=${UserID}`);
     if (!response.ok) throw new Error("User not found");
     const data = await response.json();
+    userName = data.name;
     Upgrades = JSON.stringify(data.upgrades);
     currency = data.money;
     TotalMoneyEarned = data.totalMoney;
@@ -293,3 +310,5 @@ LevelUpCheckBox.addEventListener("change", () => {
 //to get around the stupid button not saving it's state!
 
 //Future idea for future me, make div 1 maybe an information tab, or the updates tab like previously discussed!
+
+//make currently logged in as

@@ -12,7 +12,7 @@
     <div class="SettingsModal" id="Modal">
       <div class="SettingsContent">
         <span class="close">&times;</span>
-        <p style="font-size: 40px">Settigns Menu</p>
+        <p style="font-size: 40px">Settings Menu</p>
         <label for="SoundEffectsCheckbox" class="SoundEffectsSwitch"
           >Sound Effects ON/OFF</label
         >
@@ -22,6 +22,9 @@
           >Level Up Alert ON/OFF</label
         >
         <input id="LevelUpAlert" type="checkbox" checked />
+        <br />
+        <h2>Total Money Earned:</h2>
+        <h3 id="moneyEarnedStat">0</h3>
       </div>
     </div>
     <div class="gridContainer">
@@ -43,7 +46,8 @@
       </div>
       <div>
         <div class="center">
-          <h1 name="currency">$ 0</h1>
+          <h3 name="Username">You shouldn't see this</h3>
+          <h2 name="currency">$ 0</h2>
           <h2 name="income">$ 0/s</h2>
           <div class="button">
             <button name="clickerButton"><b>Distill</b></button>
@@ -186,7 +190,7 @@
         <span id="LevelPercent">Temp</span>
       </div>
       <div>
-        <button class="upgradeButton" name="upgrade8" onclick="SaveClick()">
+        <button class="saveButton" onclick="SaveClick()">
           <b class="upgradeName">Save Progress</b><br />
         </button>
       </div>
