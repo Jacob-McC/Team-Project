@@ -14,3 +14,11 @@ Body-parser
 ### The SQlite3 exe is there to test the database file, making sure the data is working
 
 ### To reset the database run the db.js file, 'node db.js'
+
+### To the lecturer marking this, follow the instruction below:
+
+temp temp
+
+### Github
+
+https://github.com/Jacob-McC/Team-Project

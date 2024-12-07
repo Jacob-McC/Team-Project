@@ -7,7 +7,7 @@ var CompareLevel = 0;
 var userName = "";
 
 //Testing purposes, set to whatever userID is needed
-sessionStorage.setItem("userID", 0);
+sessionStorage.setItem("userID", 1);
 
 if (sessionStorage.getItem("userID") == null) {
   sessionStorage.setItem("userID", 0);
