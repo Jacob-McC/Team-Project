@@ -10,6 +10,11 @@ body {
     1px 1px 0 black;
 }
 
+button:disabled {
+  background-color: #402c18;
+  border-color: #da6620;
+}
+
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;

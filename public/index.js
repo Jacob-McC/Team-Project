@@ -18,7 +18,7 @@ console.log("this is the userID: " + sessionStorage.getItem("userID"));
 //working for guest login
 
 window.addEventListener("load", async function () {
-  if (sessionStorage.getItem("userID") != 0) {
+  /*if (sessionStorage.getItem("userID") != 0) {
     await getStats();
     var UpgradesArray = Upgrades.split("-");
     //This isn't be used yet, too bad!
@@ -28,7 +28,7 @@ window.addEventListener("load", async function () {
   } else {
     this.document.getElementsByName("Username")[0].textContent =
       "Guest Brewery";
-  }
+  }*/
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
   var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
   var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
