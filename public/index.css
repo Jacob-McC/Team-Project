@@ -68,7 +68,6 @@ body {
   image-rendering: -webkit-optimize-contrast; /* Sharpen image in WebKit browsers */
   image-rendering: crisp-edges; /* Sharpen image in modern browsers */
 }
-
 /* Darker overlay to help text readability if needed */
 .center::before {
   content: "";

@@ -7,7 +7,7 @@ var CompareLevel = 0;
 var userName = "";
 
 //Testing purposes, set to whatever userID is needed
-sessionStorage.setItem("userID", 1);
+sessionStorage.setItem("userID", 0);
 
 if (sessionStorage.getItem("userID") == null) {
   sessionStorage.setItem("userID", 0);
@@ -118,17 +118,19 @@ window.addEventListener("load", async function () {
     }
     CompareLevel = Level;
     if (TotalMoneyEarned > 0) {
-      var NextLevel = Math.trunc(
-        (TotalMoneyEarned /
-          Math.pow(10, Math.ceil(Math.log10(TotalMoneyEarned)))) *
-          100
-      );
+      var NextLevel = "1" + "0".repeat(Level);
+      var NextLevel = parseInt(NextLevel);
+      var Progress = parseInt((TotalMoneyEarned / NextLevel) * 10);
+      LevelCounter.textContent = "Current Level: " + Level;
+      LevelPercent.textContent = Progress + "%";
+      LevelProgressBar.value = Progress;
     } else {
       var NextLevel = 0;
+      LevelCounter.textContent = "Current Level: " + 0;
+      LevelPercent.textContent = 0 + "%";
+      LevelProgressBar.value = 0;
     }
-    LevelCounter.textContent = "Current Level: " + Level.toString();
-    LevelPercent.textContent = NextLevel + "%";
-    LevelProgressBar.value = NextLevel;
+    //total money - previous level
 
     checkLevel(Level, upgradeButton, upgradeLevels);
   }
