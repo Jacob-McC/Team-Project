@@ -48,9 +48,15 @@ window.addEventListener("load", async function () {
   var levelUpSound = new Audio("/sounds/LevelUpSound.wav");
   var upgradeLevels = setLevels(upgradeButton.length);
   var endGameButton = this.document.getElementById("endGame");
+  var baseCosts = [...Array(upgradeButton.length).fill(0)] //The base cost of each upgrade
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
+
+  for(let i = 0; i < upgradeButton.length; i++){ //Initialising the baseCost of each upgrade
+    baseCosts[i] = upgradeCost[i].textContent;
+  }
+  console.log("Base costs loaded: " + baseCosts)
 
   clickerButton.addEventListener("click", function () {
     //When clicker is clicked it will put money up
@@ -90,7 +96,7 @@ window.addEventListener("load", async function () {
         }
         console.log("Total rate of Income is: " + totalRateOfIncome);
         changeIncomeText(totalRateOfIncome);
-        scaleUpgradeCost(upgradeCost[i].textContent, upgradeOwned[i], i);
+        scaleUpgradeCost(baseCosts[i], upgradeOwned[i], i);
       } else {
         console.log("Upgrade not bought.");
       }
@@ -182,22 +188,13 @@ window.addEventListener("load", async function () {
     changeCurrency(currency);
   }
 
-  function scaleUpgradeCost(currentCost, upgradesOwned, i) {
-    console.log("currentCost = " + currentCost);
+  function scaleUpgradeCost(baseCost, upgradesOwned, i) {
 
-    console.log("upgradesOwned = " + upgradesOwned);
-    console.log("Idk what's going on: " + (10 * upgradesOwned) ** 2);
-    newCost = Math.trunc(currentCost * 1.15 ** upgradesOwned);
+
+    newCost = Math.trunc(baseCost * 1.15 ** (upgradesOwned));
     console.log(
       "New cost is now " + newCost + " and now causing inflation lol."
     );
-
-    console.log("upgradesOwned = " + upgradesOwned);
-    newCost = Math.trunc(currentCost * 1.15 ** upgradesOwned);
-    console.log(
-      "New cost is now " + newCost + " and now causing inflation lol."
-    );
-
     upgradeCost[i].textContent = newCost;
   }
 });
