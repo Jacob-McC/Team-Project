@@ -29,8 +29,9 @@
     </div>
     <div class="gridContainer">
       <div>
-        <button id="endGame" onclick="endGame()">END GAME?!</button>
-        <h1>Information Tab</h1>
+        <button class="endGame" id="endGame" onclick="endGame()">END GAME?!</button>
+        <h2 name="Username">You shouldn't see this</h2>
+        <h3>Information Tab</h3>
         <p>
           <ul>Click the button to gain money</ul>
           <ul>Use money to buy upgrades</ul>
@@ -44,9 +45,8 @@
       </div>
       <div class="mainContent">
         <div class="center">
-          <!-- <h3 name="Username">You shouldn't see this</h3>  CURRENTLY BROKEN -->
           <h2 name="currency">$ 0</h2>
-          <h2 name="income">$ 0/s</h2>
+          <span><h2 name="income">$ 0/s</h2><h2 name="clickerIncome">$1 per click</h2></span>
           <div class="button">
             <button name="clickerButton"><b>Distill</b></button>
           </div>

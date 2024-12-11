@@ -5,6 +5,8 @@ var TotalMoneyEarned = 0;
 var currency = 0;
 var CompareLevel = 0;
 var userName = "";
+var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
+var upgradeOwned = [...Array(upgradeButton.length).fill(0)]; //The amount of each upgrade the user owns
 
 //Testing purposes, set to whatever userID is needed
 sessionStorage.setItem("userID", 0);
@@ -18,9 +20,9 @@ console.log("this is the userID: " + sessionStorage.getItem("userID"));
 //working for guest login
 
 window.addEventListener("load", async function () {
-  /*if (sessionStorage.getItem("userID") != 0) {
+  if (sessionStorage.getItem("userID") != 0) {
     await getStats();
-    var UpgradesArray = Upgrades.split("-");
+    var UpgradeArray = Upgrades.split("-");
     //This isn't be used yet, too bad!
     console.log("This is the username " + userName);
     this.document.getElementsByName("Username")[0].textContent =
@@ -28,18 +30,16 @@ window.addEventListener("load", async function () {
   } else {
     this.document.getElementsByName("Username")[0].textContent =
       "Guest Brewery";
-  }*/
+  }
   var clickerButton = this.document.getElementsByName("clickerButton")[0]; //The clicker button
-  var upgradeButton = this.document.getElementsByClassName("upgradeButton"); //The upgrade buttons
   var upgradeCost = this.document.getElementsByClassName("upgradeCost"); //The cost of each upgrade
   var upgradeName = this.document.getElementsByClassName("upgradeName"); //The name of each upgrade
   var upgradeIncome = this.document.getElementsByClassName("upgradeIncome"); //The rate of income for each upgrade
   var currencyText = this.document.getElementsByName("currency")[0]; //The text for the user's currency
   var incomeText = this.document.getElementsByName("income")[0]; //The text for the user's current income
-  var upgradeOwned = [...Array(upgradeButton.length).fill(0)]; //The amount of each upgrade the user owns
+  var clickerIncome = this.document.getElementsByName("clickerIncome")[0];
   var totalRateOfIncome = 0; //The rate of income of every upgrade added up
-  var clickScale = 1; //For if any of the upgrades increase money per click
-  //This isn't be used yet, too bad!
+  var clickScale = 1; //Money per click
   var LevelCounter = this.document.getElementById("CurLevel");
   var LevelPercent = this.document.getElementById("LevelPercent");
   var LevelProgressBar = this.document.getElementById("Level");
@@ -48,23 +48,34 @@ window.addEventListener("load", async function () {
   var levelUpSound = new Audio("/sounds/LevelUpSound.wav");
   var upgradeLevels = setLevels(upgradeButton.length);
   var endGameButton = this.document.getElementById("endGame");
-  var baseCosts = [...Array(upgradeButton.length).fill(0)] //The base cost of each upgrade
+  var baseCosts = [...Array(upgradeButton.length).fill(0)]; //The base cost of each upgrade
+  var UpgradeNames = [
+    "Beer",
+    "Stein",
+    "Pina colada",
+    "Margarita",
+    "Long Isand Iced Tea",
+    "Cosmopolitan",
+    "Bloody Mary",
+    "Champagne",
+  ];
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
 
-  for(let i = 0; i < upgradeButton.length; i++){ //Initialising the baseCost of each upgrade
+  for (let i = 0; i < upgradeButton.length; i++) {
+    //Initialising the baseCost of each upgrade
     baseCosts[i] = upgradeCost[i].textContent;
   }
-  console.log("Base costs loaded: " + baseCosts)
+  console.log("Base costs loaded: " + baseCosts);
 
   clickerButton.addEventListener("click", function () {
     //When clicker is clicked it will put money up
     if (SoundCheckbox.checked) {
       ClickSound.play();
     }
-    currency++;
-    TotalMoneyEarned++;
+    currency += clickScale;
+    TotalMoneyEarned += clickScale;
     console.log("Total: " + TotalMoneyEarned);
     console.log("Currency: " + currency);
     currencyText.textContent = "$ " + currency;
@@ -87,7 +98,7 @@ window.addEventListener("load", async function () {
         changeCurrency(currency);
         upgradeOwned[i]++;
         upgradeName[i].textContent =
-          "Upgrade " + (i + 1) + " (" + upgradeOwned[i] + ")";
+          UpgradeNames[i] + " (" + upgradeOwned[i] + ")";
         console.log("Upgrade Bought!");
 
         totalRateOfIncome = 0;
@@ -115,6 +126,8 @@ window.addEventListener("load", async function () {
 
   function calculateLevel(TotalMoneyEarned) {
     var Level = TotalMoneyEarned.toString().length - 1;
+    clickerIncome.textContent = "$ " + Math.pow(5, Level) + " per click";
+    clickScale = Math.pow(5, Level);
     if (Level > CompareLevel && LevelUpCheckBox.checked == true) {
       window.alert("Congratulations! You have levelled up to level: " + Level);
     }
@@ -189,9 +202,7 @@ window.addEventListener("load", async function () {
   }
 
   function scaleUpgradeCost(baseCost, upgradesOwned, i) {
-
-
-    newCost = Math.trunc(baseCost * 1.15 ** (upgradesOwned));
+    newCost = Math.trunc(baseCost * 1.15 ** upgradesOwned);
     console.log(
       "New cost is now " + newCost + " and now causing inflation lol."
     );
