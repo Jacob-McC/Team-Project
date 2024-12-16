@@ -59,6 +59,17 @@ window.addEventListener("load", async function () {
     "Bloody Mary",
     "Champagne",
   ];
+  var upgradeImageElement = this.document.getElementsByClassName("upgradeImage");
+  var upgradeDefaultImages = [
+    "images/beer(1).png",
+    "images/beer.png",
+    "images/cocktail(1).png",
+    "images/cocktail.png",
+    "images/cocktail(2).png",
+    "images/cocktails.png",
+    "images/wine-glass.png",
+    "images/champagne.png",
+  ];
 
   console.log("Page Loaded Successfully");
   console.log(upgradeOwned);
@@ -159,6 +170,10 @@ window.addEventListener("load", async function () {
     for (let i = 0; i < upgradeButton.length; i++) {
       if (level >= upgradeLevels[i]) {
         upgradeButton[i].disabled = false;
+        upgradeImageElement[i].src = upgradeDefaultImages[i];
+      }
+      else {
+        upgradeImageElement[i].src = "images/lock.png";
       }
     }
     if (level > 3) {
@@ -173,7 +188,7 @@ window.addEventListener("load", async function () {
 
   function setLevels(upgrades) {
     var temp = [];
-    for (let i = 0; i <= upgrades; i++) {
+    for (let i = 0; i <= upgrades; i ++) {
       temp.push(i * 2);
     }
     console.log("The upgrade levels: " + temp);
