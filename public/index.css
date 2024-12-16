@@ -129,7 +129,8 @@ button {
 .upgradeButton,
 .saveButton,
 .SettingsBtn,
-.endGame {
+.endGame,
+.loginBtn {
   background-color: #704214; /* Dark brown */
   border: 1px solid #daa520; /* Golden rod border */
   color: #ffd700; /* Gold text */
