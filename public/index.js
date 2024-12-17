@@ -59,7 +59,8 @@ window.addEventListener("load", async function () {
     "Bloody Mary",
     "Champagne",
   ];
-  var upgradeImageElement = this.document.getElementsByClassName("upgradeImage");
+  var upgradeImageElement =
+    this.document.getElementsByClassName("upgradeImage");
   var upgradeDefaultImages = [
     "images/beer(1).png",
     "images/beer.png",
@@ -171,8 +172,7 @@ window.addEventListener("load", async function () {
       if (level >= upgradeLevels[i]) {
         upgradeButton[i].disabled = false;
         upgradeImageElement[i].src = upgradeDefaultImages[i];
-      }
-      else {
+      } else {
         upgradeImageElement[i].src = "images/lock.png";
       }
     }
@@ -188,7 +188,7 @@ window.addEventListener("load", async function () {
 
   function setLevels(upgrades) {
     var temp = [];
-    for (let i = 0; i <= upgrades; i ++) {
+    for (let i = 0; i <= upgrades; i++) {
       temp.push(i * 2);
     }
     console.log("The upgrade levels: " + temp);
@@ -273,7 +273,7 @@ async function SaveClick() {
       });
       const data = await response.json();
     } catch (error) {
-      console.log("FUCKED");
+      console.log("broken");
     }
   }
 }
@@ -299,7 +299,7 @@ async function getStats() {
     currency = data.money;
     TotalMoneyEarned = data.totalMoney;
   } catch (error) {
-    console.log("FUCKED");
+    console.log("broken");
   }
 }
 
@@ -333,7 +333,3 @@ LevelUpCheckBox.addEventListener("change", () => {
 });
 //this is voodoo
 //to get around the stupid button not saving it's state!
-
-//Future idea for future me, make div 1 maybe an information tab, or the updates tab like previously discussed!
-
-//make currently logged in as

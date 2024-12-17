@@ -33,6 +33,4 @@ db.serialize(() => {
 });
 
 //very unsecure, i know
-//fuck, this is more complex than i thought it would be
-//will figure out next week
 module.exports = db;

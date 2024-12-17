@@ -59,7 +59,6 @@ app.post("/login", (req, res) => {
       res.redirect("/");
     } else {
       res.redirect("/login");
-      //Need to give the user a message or something
     }
   });
 });
@@ -75,7 +74,6 @@ app.get("/getStats", (req, res) => {
     if (row) {
       res.json(row);
     } else {
-      //Need to give the user a message or something
     }
   });
 });
@@ -87,15 +85,10 @@ app.post("/saveStats", (req, res) => {
   const fixedUpgrades = Upgrades.match(/\d.*\d/).toString();
   db.run(sql, [money, fixedUpgrades, totalMoney, userID], function (err) {
     if (err) {
-      console.log("FUCKED");
+      console.log("An error occured");
       return res.status(500).json({ error: "Database error" });
     } else {
-      console.log("NOT FUCKED");
+      console.log("save stats went thorugh fine");
     }
   });
 });
-
-///IMPORTANT
-///Before hand in, we need some quality assurance to fix all mentions of the word 'Fucked'
-///or close to that that i have included whilst testing
-///Keeping it as is now because i am still testing - Jacob
